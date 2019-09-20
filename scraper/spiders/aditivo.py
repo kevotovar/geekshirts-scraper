@@ -6,16 +6,14 @@ from selenium import webdriver
 class AditivoSpider(scrapy.Spider):
     name = 'aditivo'
     start_urls = [
-        'https://aditivo.mx/collections/ropa-de-chavas-aditivo',
-        'https://aditivo.mx/collections/ropa-de-chavos-aditivo',
-        'https://aditivo.mx/collections/playeras-ninos-mexico',
-        'https://aditivo.mx/collections/accesorios-aditivo-playeras',
+        # 'https://aditivo.mx/collections/playera-chavas-mexico',
+        'https://aditivo.mx/collections/playera-chavos-mexico'
     ]
     allowed_domains = ['aditivo.mx']
     base_url = 'https://aditivo.mx'
 
     def __init__(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
 
     def parse(self, response):
         products = response.css('div.ci > a')

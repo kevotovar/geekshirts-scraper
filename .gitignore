@@ -129,3 +129,4 @@ dmypy.json
 .vscode/
 
 # End of https://www.gitignore.io/api/python
+*.csv

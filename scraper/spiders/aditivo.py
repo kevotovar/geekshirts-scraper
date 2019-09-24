@@ -36,5 +36,7 @@ class AditivoSpider(scrapy.Spider):
             sku=self.driver.find_element_by_css_selector(
                 'span.variant-sku').text,
             material=response.css(
-                '#product-description > div.rte > p:nth-child(1)::text').get()
+                '#product-description > div.rte > p:nth-child(1)::text').get(),
+            image=self.driver.find_element_by_xpath(
+                '/html/body/div[5]/div[2]/div/div[3]/div/div[3]/div[1]/img[1]').get_attribute('src'),
         )

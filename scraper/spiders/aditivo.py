@@ -8,7 +8,8 @@ class AditivoSpider(scrapy.Spider):
     start_urls = [
         # 'https://aditivo.mx/collections/playera-chavas-mexico',
         # 'https://aditivo.mx/collections/playera-chavos-mexico'
-        'https://aditivo.mx/collections/sudaderas-chavos'
+        # 'https://aditivo.mx/collections/sudaderas-chavos'
+        'https://aditivo.mx/collections/sudaderas-chavas-mexico'
     ]
     allowed_domains = ['aditivo.mx']
     base_url = 'https://aditivo.mx'
@@ -38,6 +39,8 @@ class AditivoSpider(scrapy.Spider):
         variant_price = response.css('#product-price > span::text').get()
         description = response.css(
             '#product-description > div.rte > p:nth-child(1)::text').get()
+        image = self.driver.find_element_by_xpath(
+            '/html/body/div[5]/div[2]/div/div[3]/div/div[3]/div[1]/img[1]').get_attribute('src')
         if variant_price == 'Agotado':
             return None
         for variant in ['EG', 'G', 'M', 'CH']:
@@ -50,7 +53,8 @@ class AditivoSpider(scrapy.Spider):
                     'type': 'Sudadera',
                     'collection': 'Hombres',
                     'Option1 Name': 'Tamaño',
-                    'Option1 Value': variant
+                    'Option1 Value': variant,
+                    'image src': image
                 }
             else:
                 yield {
